@@ -1,31 +1,37 @@
-# Utilise une image officielle PHP avec Apache
-FROM php:8.2-apache
+# Étape 1 : Utilisation de Node.js + Debian slim comme base
+FROM node:18-bullseye-slim
 
-# Installe les extensions nécessaires
+# Variables d'environnement
+ENV APP_ENV=prod
+WORKDIR /app
+
+# 📦 Installation des dépendances système PHP, Composer, GPG (pour Yarn)
 RUN apt-get update && apt-get install -y \
-    git unzip libicu-dev libonig-dev libzip-dev zip \
-    nodejs npm curl \
-    && docker-php-ext-install intl pdo pdo_mysql zip
+    php-cli php-mbstring php-xml php-intl php-curl php-mysql php-sqlite3 \
+    php-zip php-bcmath php-tokenizer php-json php-common php-gd php-dom \
+    php-pdo php-pdo-mysql php-soap php-ctype php-opcache php-readline \
+    unzip curl git gnupg \
+    && rm -rf /var/lib/apt/lists/*
 
-# Installe Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# 📥 Installation de Composer
+RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
 
-# Installe Yarn
-RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
-  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
-  && apt-get update && apt-get install -y yarn
+# 📥 Installation de Yarn (sans apt-key)
+RUN curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor -o /usr/share/keyrings/yarn-archive-keyring.gpg && \
+    echo "deb [signed-by=/usr/share/keyrings/yarn-archive-keyring.gpg] https://dl.yarnpkg.com/debian/ stable main" \
+    | tee /etc/apt/sources.list.d/yarn.list && \
+    apt-get update && apt-get install -y yarn
 
-# Copie tout le code dans le container
-COPY . /var/www/html/
+# 📁 Copie du projet Symfony
+COPY . .
 
-# Active le mod_rewrite d'Apache
-RUN a2enmod rewrite
+# 🔧 Installation des dépendances PHP et JS
+RUN composer install --no-dev --optimize-autoloader && \
+    yarn install && \
+    yarn build
 
-# Donne les bonnes permissions
-RUN chown -R www-data:www-data /var/www/html/var
+# 📂 Symfony stocke les fichiers web ici
+EXPOSE 8000
 
-# Installe les dépendances PHP et JS
-RUN cd /var/www/html && composer install && yarn install && yarn build
-
-# Port exposé
-EXPOSE 80
+# ▶️ Lancement du serveur Symfony (adapté pour Render)
+CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]
