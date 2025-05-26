@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Galerie - Les Premiers{% endblock %}
+    {% block stylesheets %}
+        {{ parent() }}
+        <style>
+            .card-img-top {
+                height: 220px;
+                object-fit: cover;
+                border-radius: 0.5rem;
+            }
+        </style>
+    {% endblock stylesheets %}
+
+{% block body %}
+    <div class="text-center my-5">
+        <h1 class="fw-bold">Galerie photos</h1>
+        <p class="lead">Quelques souvenirs en images de nos activités pédagogiques et extrascolaires.</p>
+    </div>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        {% for i in 1..9 %}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="{{ asset('build/images/galerie/photo/ecole' ~ i ~ '.jpeg') }}" class="card-img-top" alt="École {{ i }}">
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

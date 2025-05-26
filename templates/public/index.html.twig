@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - Les Premiers{% endblock %}
+
+{% block body %}
+    <!-- Section Héro -->
+    <div class="text-center my-5">
+        <h1 class="display-4 fw-bold">Bienvenue au Complexe Scolaire Les Premiers</h1>
+        <p class="lead mt-3">Une école d’excellence qui façonne les leaders de demain.</p>
+        <a href="{{ path('formations') }}" class="btn btn-principal mt-4">Voir nos formations</a>
+    </div>
+
+    <!-- Section Présentation rapide -->
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <h2 class="fw-semibold">Notre mission</h2>
+            <p>
+                Le Complexe Scolaire Les Premiers vise l’excellence académique et l’épanouissement personnel
+                de chaque élève. Nous mettons en œuvre des méthodes pédagogiques modernes et un encadrement rigoureux.
+            </p>
+        </div>
+        <div class="col-md-6">
+            <img src="{{ asset('build/images/ecole2.jpeg') }}" class="img-fluid rounded shadow-sm" alt="Photo de l’école">
+        </div>
+    </div>
+
+    <!-- Valeurs ou Chiffres clés -->
+    <div class="bg-light p-4 mt-5 rounded text-center">
+        <div class="row">
+            <div class="col-md-4">
+                <h3 class="fw-bold">+500</h3>
+                <p>Élèves formés</p>
+            </div>
+            <div class="col-md-4">
+                <h3 class="fw-bold">100%</h3>
+                <p>Réussite au CEP et BEPC</p>
+            </div>
+            <div class="col-md-4">
+                <h3 class="fw-bold">2006</h3>
+                <p>Année de création</p>
+            </div>
+        </div>
+    </div>
+    <!-- Section Témoignages -->
+    <section class="mt-5">
+        <h2 class="text-center fw-bold mb-4">Ce que disent les parents</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <p class="card-text">« Grâce à Les Premiers, mon fils a retrouvé le goût d'apprendre. Les enseignants sont exceptionnels ! »</p>
+                        <p class="fw-semibold text-end">– Mme. Ahouansou</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-3 mt-md-0">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <p class="card-text">« Une école sérieuse, bien structurée, avec une vraie vision éducative. Bravo ! »</p>
+                        <p class="fw-semibold text-end">– M. Kossi</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-3 mt-md-0">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <p class="card-text">« Mon enfant a été très bien préparé pour le BEPC. Il a réussi avec mention. Merci ! »</p>
+                        <p class="fw-semibold text-end">– Mme. Gnahoui</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Actualités -->
+    <section class="mt-5">
+        <h2 class="text-center fw-bold mb-4">Actualités & Événements</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="alert alert-info">
+                    📢 <strong>Portes ouvertes :</strong> Rejoignez-nous le 15 juin pour découvrir notre campus et rencontrer notre équipe pédagogique.
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="alert alert-success">
+                    🏆 <strong>Concours régional :</strong> Félicitations à nos élèves finalistes du concours de mathématiques 2025.
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section Appel à l’action -->
+    <section class="text-center mt-5 bg-primary text-white p-5 rounded">
+        <h2 class="fw-bold">Prêt à inscrire votre enfant ?</h2>
+        <p class="lead">N’attendez pas la dernière minute. Les inscriptions pour l’année scolaire prochaine sont ouvertes.</p>
+        <a href="{{ path('contact') }}" class="btn btn-light mt-3">Contactez-nous maintenant</a>
+    </section>
+
+
+{% endblock %}

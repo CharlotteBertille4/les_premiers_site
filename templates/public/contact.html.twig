@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact - Les Premiers{% endblock %}
+
+{% block body %}
+    <div class="text-center my-5">
+        <h1 class="fw-bold">Contactez-nous</h1>
+        <p class="lead">Nous sommes à votre écoute pour toute demande d'information ou d'inscription.</p>
+    </div>
+
+    <div class="row">
+        <!-- Coordonnées -->
+        <div class="col-md-6 mb-4">
+            <h4 class="fw-bold">📍 Adresse</h4>
+            <p>Complexe Scolaire Les Premiers<br>
+                Rue XYZ, Quartier ABC<br>
+                Cotonou, Bénin</p>
+
+            <h4 class="fw-bold">📞 Téléphone</h4>
+            <p>+229 90 00 00 00</p>
+
+            <h4 class="fw-bold">✉️ Email</h4>
+            <p>contact@lespremiers.bj</p>
+        </div>
+
+        <!-- Formulaire -->
+        <div class="col-md-6">
+            <form method="post" action="#">
+                <div class="mb-3">
+                    <label for="nom" class="form-label">Nom complet</label>
+                    <input type="text" class="form-control" id="nom" name="nom" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Adresse email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-principal">Envoyer</button>
+            </form>
+        </div>
+    </div>
+
+    {# Optionnel : carte Google Maps #}
+    <div class="my-5">
+        <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.8667475237896!2d2.4208147147633823!3d6.370292295395802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1024b9e30e2d0fdb%3A0x91b4a20c7de87f9d!2sCotonou!5e0!3m2!1sfr!2sbj!4v1716569800951!5m2!1sfr!2sbj"
+                width="100%" height="300" style="border:0;" allowfullscreen=""
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+{% endblock %}
