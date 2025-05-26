@@ -1,38 +1,30 @@
-# Étape 1 : Utilisation de Node.js + Debian slim comme base
-FROM node:18-bullseye-slim
+FROM php:8.2-cli
 
-# Variables d'environnement
-ENV APP_ENV=prod
+# Installe les dépendances système
+RUN apt-get update && apt-get install -y \
+    git unzip curl zip gnupg2 \
+    libicu-dev libonig-dev libzip-dev libxml2-dev \
+    libpq-dev libpng-dev libjpeg-dev libfreetype6-dev \
+    nodejs npm
+
+# Installe Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Installe Yarn
+RUN npm install -g yarn
+
+# Définit le dossier de travail
 WORKDIR /app
 
-# 📦 Installation des dépendances système PHP, Composer, GPG (pour Yarn)
-RUN apt-get update && apt-get install -y \
-    php-cli php-mbstring php-xml php-intl php-curl php-mysql php-sqlite3 \
-    php-zip php-bcmath php-tokenizer php-json php-common php-gd php-dom \
-    php-pdo php-pdo-mysql php-soap php-ctype php-opcache php-readline \
-    unzip curl git gnupg \
-    && rm -rf /var/lib/apt/lists/*
-
-# 📥 Installation de Composer
-RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
-
-# 📥 Installation de Yarn (sans apt-key)
-RUN curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor -o /usr/share/keyrings/yarn-archive-keyring.gpg && \
-    echo "deb [signed-by=/usr/share/keyrings/yarn-archive-keyring.gpg] https://dl.yarnpkg.com/debian/ stable main" \
-    | tee /etc/apt/sources.list.d/yarn.list && \
-    apt-get update && apt-get install -y yarn
-
-# 📁 Copie du projet Symfony
+# Copie tous les fichiers
 COPY . .
 
-# 🔧 Installation des dépendances PHP et JS
-# Par ces lignes séparées :
-    RUN composer install --no-dev --optimize-autoloader
-    RUN yarn install
-    RUN yarn build
-    
-# 📂 Symfony stocke les fichiers web ici
-EXPOSE 8000
+# Installe les dépendances PHP
+RUN composer install --no-dev --optimize-autoloader
 
-# ▶️ Lancement du serveur Symfony (adapté pour Render)
+# Installe les dépendances JS
+RUN yarn install
+RUN yarn build
+
+# Commande par défaut
 CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]
