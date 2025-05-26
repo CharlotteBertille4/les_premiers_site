@@ -26,10 +26,11 @@ RUN curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor -o /usr/
 COPY . .
 
 # 🔧 Installation des dépendances PHP et JS
-RUN composer install --no-dev --optimize-autoloader && \
-    yarn install && \
-    yarn build
-
+# Par ces lignes séparées :
+    RUN composer install --no-dev --optimize-autoloader
+    RUN yarn install
+    RUN yarn build
+    
 # 📂 Symfony stocke les fichiers web ici
 EXPOSE 8000
 
