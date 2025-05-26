@@ -20,7 +20,7 @@ WORKDIR /app
 COPY . .
 
 # Installe les dépendances PHP
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install
 
 # Installe les dépendances JS
 RUN yarn install
