@@ -23,7 +23,7 @@ WORKDIR /app
 COPY composer.json composer.lock ./
 
 # Installer les dépendances PHP
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+RUN composer install
 
 # Copier les fichiers yarn pour profiter du cache Docker
 COPY package.json yarn.lock ./
