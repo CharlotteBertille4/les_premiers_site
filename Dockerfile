@@ -21,7 +21,9 @@ COPY composer.json composer.lock ./
 RUN composer --version
 
 # Installer les dépendances PHP
-RUN composer install --no-interaction --prefer-dist --optimize-autoloader
+RUN composer install 
+RUN which composer
+
 
 # Copier tout le reste
 COPY . .
