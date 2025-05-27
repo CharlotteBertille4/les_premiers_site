@@ -40,8 +40,8 @@ RUN npm install -g yarn \
     && yarn install \
     && yarn build
 
-#CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]
-CMD sh -c "php -S 0.0.0.0:${PORT} -t public"
+# Exposer le port (optionnel mais conseillé)
+EXPOSE 8000
 
-
-EXPOSE 8002
+# Lancer le serveur Symfony/PHP
+CMD sh -c "php -S 0.0.0.0:\$PORT -t public"
