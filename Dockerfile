@@ -40,4 +40,8 @@ RUN npm install -g yarn \
     && yarn install \
     && yarn build
 
-CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]
+#CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]
+CMD sh -c "php -S 0.0.0.0:${PORT} -t public"
+
+
+EXPOSE 8002
