@@ -20,13 +20,13 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 WORKDIR /app
 
 # Copier les fichiers composer pour profiter du cache Docker
-COPY composer.json ./
+COPY composer.json /
 
 # Installer les dépendances PHP
 RUN composer install
 
 # Copier les fichiers yarn pour profiter du cache Docker
-COPY package.json yarn.lock ./
+COPY package.json yarn.lock /
 
 # Installer les dépendances JS
 RUN yarn install
