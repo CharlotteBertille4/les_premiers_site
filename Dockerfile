@@ -7,6 +7,13 @@ RUN apt-get update && apt-get install -y \
     libpq-dev libpng-dev libjpeg-dev libfreetype6-dev \
     nodejs npm
 
+# Installer Node.js 20 LTS manuellement (compatible avec babel-loader)
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+&& apt-get install -y nodejs
+
+# Vérification des versions
+RUN node -v && npm -v
+
 # Installer Composer
 RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer
