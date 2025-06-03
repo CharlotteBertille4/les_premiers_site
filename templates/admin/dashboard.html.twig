@@ -1,0 +1,53 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content %}
+    <h1 class="text-center my-4">Bienvenue dans l'espace d'administration</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-header">Actualités</div>
+                <div class="card-body">
+                    <h5 class="card-title">Gérez les articles publiés</h5>
+                    <p class="card-text">Ajoutez, modifiez ou supprimez les actualités du site.</p>
+                    <a href="{{ path('admin') }}" class="btn btn-light">Accéder</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-header">Galeries</div>
+                <div class="card-body">
+                    <h5 class="card-title">Gérez les photos</h5>
+                    <p class="card-text">Ajoutez ou retirez des images de la galerie.</p>
+                    <a href="{{ path('admin') }}" class="btn btn-light">Accéder</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-header">Vidéos</div>
+                <div class="card-body">
+                    <h5 class="card-title">Mettez à jour les vidéos</h5>
+                    <p class="card-text">Ajoutez des vidéos de présentations ou d'événements.</p>
+                    <a href="{{ path('admin') }}" class="btn btn-light">Accéder</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card text-white bg-danger mb-3">
+                <div class="card-header">Sections / Classes</div>
+                <div class="card-body">
+                    <h5 class="card-title">Organisez les niveaux</h5>
+                    <p class="card-text">Ajoutez les sections ou classes de l’établissement.</p>
+                    <a href="{{ path('admin') }}" class="btn btn-light">Accéder</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
