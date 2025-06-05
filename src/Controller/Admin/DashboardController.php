@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Actualite;
 use App\Entity\Etablissement;
 use App\Entity\ImageGallery;
 use App\Entity\PageContent;
@@ -58,5 +59,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Etablissement', 'fa fa-newspaper', Etablissement::class);
         yield MenuItem::linkToCrud('Gallerie', 'fa fa-image', ImageGallery::class);
         yield MenuItem::linkToCrud('Contenu des pages', 'fa fa-video', PageContent::class);
+        yield MenuItem::linkToCrud('Actualité', 'fa fa-newspaper', Actualite::class);
     }
 }
