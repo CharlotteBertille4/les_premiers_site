@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 
+use App\Repository\EtablissementRepository;
+use App\Repository\ImageGalleryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -10,9 +12,21 @@ use Symfony\Component\Routing\Attribute\Route;
 final class PublicController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function home(): Response
+    public function home(
+//        EtablissementRepository $etablissementRepository,
+//        ImageGalleryRepository $imageGalleryRepository
+    ): Response
     {
-        return $this->render('public/index.html.twig');
+        // On suppose qu’il n’y a qu’un seul enregistrement
+//        $etablissement = $etablissementRepository->findOneBy([]);
+//        $galleries = $imageGalleryRepository->findAll();
+
+
+        return $this->render('public/index.html.twig', [
+//            'etablissement' => $etablissement,
+//            'galleries' => $galleries,
+
+        ]);
     }
 
     #[Route('/a-propos', name: 'a_propos')]
@@ -25,12 +39,6 @@ final class PublicController extends AbstractController
     public function formations(): Response
     {
         return $this->render('public/formations.html.twig');
-    }
-
-    #[Route('/galerie', name: 'galerie')]
-    public function galerie(): Response
-    {
-        return $this->render('public/galerie.html.twig');
     }
 
     #[Route('/contact', name: 'contact')]

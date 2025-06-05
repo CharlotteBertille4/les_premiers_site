@@ -46,8 +46,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
     <div class="container">
         <a class="navbar-brand" href="{{ path('home') }}">
-            <img src="{{ asset('build/images/logo.jpeg') }}" alt="Logo Les Premiers" height="75">
-            CS Les Premiers
+            <img src="{{ asset('uploads/images/etablissements/' ~ etablissement.imageName) }}" alt="Logo Les Premiers" height="75">
+            {{ etablissement.nom }}
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
@@ -57,7 +57,7 @@
                 <li class="nav-item"><a class="nav-link" href="{{ path('home') }}">Accueil</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ path('a_propos') }}">À propos</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ path('formations') }}">Formations</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ path('galerie') }}">Galerie</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('app_galerie') }}">Galerie</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ path('contact') }}">Contact</a></li>
             </ul>
             <a href="{{ path('contact') }}" class="btn btn-principal ms-3">Nous contacter</a>

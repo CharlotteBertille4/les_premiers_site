@@ -4,9 +4,13 @@ namespace App\Entity;
 
 use App\Repository\ImageGalleryRepository;
 use Doctrine\DBAL\Types\Types;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 
 #[ORM\Entity(repositoryClass: ImageGalleryRepository::class)]
+#[Vich\Uploadable]
 class ImageGallery
 {
     #[ORM\Id]
@@ -19,6 +23,11 @@ class ImageGallery
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
+
+    #[Vich\UploadableField(mapping: 'gallery_images', fileNameProperty: 'image')]
+    #[Assert\File(maxSize: '5M', mimeTypes: ['image/jpeg', 'image/png', 'image/webp'])]
+    private ?File $imageFile = null;
+
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
@@ -48,11 +57,24 @@ class ImageGallery
         return $this->image;
     }
 
-    public function setImage(?string $image): static
+    public function setImage(?string $image): void
     {
         $this->image = $image;
 
-        return $this;
+    }
+
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if ($imageFile !== null) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
     }
 
     public function getDescription(): ?string
