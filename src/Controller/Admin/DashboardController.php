@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Actualite;
 use App\Entity\Etablissement;
+use App\Entity\Formation;
 use App\Entity\ImageGallery;
 use App\Entity\PageContent;
 use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
@@ -60,5 +61,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Gallerie', 'fa fa-image', ImageGallery::class);
         yield MenuItem::linkToCrud('Contenu des pages', 'fa fa-video', PageContent::class);
         yield MenuItem::linkToCrud('Actualité', 'fa fa-newspaper', Actualite::class);
+        yield MenuItem::linkToCrud('Formations', 'fa fa-newspaper', Formation::class);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Actualite;
 use App\Repository\ActualiteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,14 @@ final class ActualiteController extends AbstractController
 
         return $this->render('actualite/index.html.twig', [
             'actualites' => $actualites,
+        ]);
+    }
+
+    #[Route('/actualite/{id}', name: 'actualite_show')]
+    public function show(Actualite $actualite): Response
+    {
+        return $this->render('actualite/show.html.twig', [
+            'actualite' => $actualite,
         ]);
     }
 }

@@ -35,6 +35,9 @@ class ImageGallery
     #[ORM\Column(nullable: true)]
     private ?\DateTime $dateAjout = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $createdAt = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -97,6 +100,18 @@ class ImageGallery
     public function setDateAjout(?\DateTime $dateAjout): static
     {
         $this->dateAjout = $dateAjout;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

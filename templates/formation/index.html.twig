@@ -1,0 +1,113 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Formations - Les Premiers{% endblock %}
+
+{% block body %}
+    <div class="text-center my-5">
+        <h1 class="fw-bold">Nos Formations</h1>
+        <p class="lead mt-3">Une offre éducative complète pour accompagner les élèves du préscolaire jusqu’au secondaire.</p>
+    </div>
+
+    <!-- Tableau ou cartes des niveaux -->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <!-- Préscolaire -->
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    {% for formation in formations %}
+                        <div class="col-md-4">
+                            <div class="card mb-4">
+                                {% if formation.imageName %}
+                                    <img src="{{ asset('uploads/images/formations/' ~ formation.imageName) }}" class="card-img-top" alt="...">
+                                {% endif %}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ formation.titre }}</h5>
+                                    <p><strong>Niveaux :</strong> {{ formation.niveau }}</p>
+                                    <p class="card-text">{{ formation.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Primaire -->
+{#        <div class="col">#}
+{#            <div class="card h-100 shadow-sm">#}
+{#                <div class="card-body">#}
+{#                    <h5 class="card-title">Primaire</h5>#}
+{#                    <p class="card-text">Une formation de base solide axée sur la lecture, l’écriture, les mathématiques et la découverte du monde.</p>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+
+{#        <!-- Collège -->#}
+{#        <div class="col">#}
+{#            <div class="card h-100 shadow-sm">#}
+{#                <div class="card-body">#}
+{#                    <h5 class="card-title">Collège (6e à 3e)</h5>#}
+{#                    <p class="card-text">Un accompagnement rigoureux pour une transition réussie vers le lycée.</p>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+
+{#        <!-- Lycée série A -->#}
+{#        <div class="col">#}
+{#            <div class="card h-100 shadow-sm">#}
+{#                <div class="card-body">#}
+{#                    <h5 class="card-title">Lycée - Série A</h5>#}
+{#                    <p class="card-text">Une formation littéraire axée sur les langues, les sciences humaines et la philosophie.</p>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+
+{#        <!-- Lycée série D -->#}
+{#        <div class="col">#}
+{#            <div class="card h-100 shadow-sm">#}
+{#                <div class="card-body">#}
+{#                    <h5 class="card-title">Lycée - Série D</h5>#}
+{#                    <p class="card-text">Un parcours scientifique pour les élèves passionnés de mathématiques, physique, SVT et technologie.</p>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+
+{#        <!-- Cours du soir ou préparations aux examens -->#}
+{#        <div class="col">#}
+{#            <div class="card h-100 shadow-sm">#}
+{#                <div class="card-body">#}
+{#                    <h5 class="card-title">Cours du soir & préparation aux examens</h5>#}
+{#                    <p class="card-text">Des sessions de soutien et de remise à niveau pour maximiser les chances de réussite aux examens nationaux.</p>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+
+    <!-- ⭐ Pourquoi nous choisir -->
+    <section class="my-5 py-5 bg-light text-center">
+        <div class="container">
+            <h2 class="fw-bold mb-4">Pourquoi choisir le Complexe Scolaire Les Premiers ?</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <p>📚 Un encadrement pédagogique de qualité assuré par des enseignants expérimentés.</p>
+                </div>
+                <div class="col-md-4">
+                    <p>🛡️ Un environnement sécurisé, propice à l’apprentissage et à l’épanouissement.</p>
+                </div>
+                <div class="col-md-4">
+                    <p>💡 Des programmes enrichis avec des activités extrascolaires pour développer tous les talents.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 📄 Télécharger la brochure -->
+    <div class="text-center my-5">
+        <a href="{{ asset('docs/brochure.pdf') }}" class="btn btn-principal btn-lg" target="_blank">
+            📄 Télécharger notre brochure
+        </a>
+    </div>
+{% endblock %}
+

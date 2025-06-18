@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ actualite.titre }}{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+        <h1 class="mb-4">{{ actualite.titre }}</h1>
+        <p class="text-muted">Publié le {{ actualite.createdAt|date('d/m/Y') }}</p>
+
+        {% if actualite.imageName %}
+            <img src="{{ asset('uploads/images/actualites/' ~ actualite.imageName) }}" alt="Image" class="img-fluid mb-4">
+        {% endif %}
+
+        <div class="content">
+            {{ actualite.contenu|raw }}
+        </div>
+
+        <a href="{{ path('app_actualite') }}" class="btn btn-secondary mt-4">← Retour à la liste</a>
+    </div>
+{% endblock %}
