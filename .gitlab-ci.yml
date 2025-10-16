@@ -4,9 +4,16 @@ stages:
 # Job pour synchroniser vers GitHub
 mirror_to_github:
   stage: mirror
-  image: alpine/git
+  image: bitnami/git:latest
+#  only:
+#    - main
+  before_script:
+    - git config --global user.email "ci@gitlab.com"
+    - git config --global user.name "GitLab CI"
   script:
     - git remote add github https://$GITHUB_USERNAME:$GITHUB_TOKEN@github.com/$GITHUB_USERNAME/$GITHUB_REPO.git || true
+    - git fetch --unshallow origin || true
     - git push github HEAD:main --force
   variables:
     GIT_STRATEGY: clone
+    GIT_DEPTH: 0
