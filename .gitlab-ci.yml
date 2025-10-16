@@ -11,7 +11,7 @@ mirror_to_github:
     - git config --global user.email "ci@gitlab.com"
     - git config --global user.name "GitLab CI"
   script:
-    - git remote add github https://CharlotteBertille4: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@github.com/CharlotteBertille4/les_premiers_site.git || true
+    - git remote add github https://CharlotteBertille4:GITHUB_TOKEN@github.com/CharlotteBertille4/les_premiers_site.git || true
     - git fetch --unshallow origin || true
     - git push github HEAD:refs/heads/main --force
   variables:
