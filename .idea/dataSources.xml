@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="les_premiers@localhost" uuid="b082bd7c-4b37-430f-aade-a0861c34d296">
-      <driver-ref>mysql.8</driver-ref>
+    <data-source source="LOCAL" name="les_premiers@localhost [2]" uuid="f95f7796-67d8-46f2-b43c-7b220c50513d">
+      <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/les_premiers</jdbc-url>
-      <jdbc-additional-properties>
-        <property name="database.introspection.mysql.dbe5060" value="true" />
-      </jdbc-additional-properties>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/les_premiers</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: lespremiers_site
+    env: php
+    buildCommand: "./build.sh"
+    startCommand: "heroku-php-apache2 public/"
+    envVars:
+      - key: APP_ENV
+        value: prod
+      - key: APP_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: les_premiers
+          property: connectionString
